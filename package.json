@@ -1,0 +1,26 @@
+{
+  "name": "lesson-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down -v",
+    "init-db": "docker compose cp ./test.sql db:/tmp/test.sql && docker compose exec -T db psql -U user -d testdb -f /tmp/test.sql",
+    "start:with-db": "npm run docker:up && sleep 5 && npm run init-db"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "knex": "^3.1.0",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
